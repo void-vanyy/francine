@@ -4126,6 +4126,13 @@
         } else {
             npArt.style.display = 'none';
         }
+        if ('mediaSession' in navigator) {
+            navigator.mediaSession.metadata = new MediaMetadata({
+                title: song.name,
+                artist: song.artist,
+                artwork: song.img ? [{ src: song.img, sizes: '512x512', type: 'image/png' }] : []
+            });
+        }
         bgMusic.play().then(() => {
             isPlaying = true;
             playBtnBig.textContent = '⏸';
